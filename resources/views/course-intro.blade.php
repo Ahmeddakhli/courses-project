@@ -34,9 +34,9 @@
             <div class="intro-head text-center">
                 <div class="container">
                     <h1>
-                       <a href="{{ route('course_page', $course->id) }}">
+                       
                        {{$course->title}} مقدمة في كورس 
-                         </a>  
+                         
                     </h1>
                 </div>
                 <!-- /.container -->
@@ -65,9 +65,17 @@
                             
                         @endif
                         </div>
+                        <?php use App\Models\User; $orders= User::find(Auth::user()->id)->orders->where('course_id',$course->id); 
+        ?> 
+       
                         <div class="extras col-md-5 col-xs-12">
                             <span>$ {{$course->course_mony}}</span>
-                              <a href="{{ route('course_page', $course->id) }}"> <span>عرض محتويات الكورس</span></a>
+                             @if(count($orders)>0)
+                                          <a href="{{ route('course_page', $course->id) }}"> <span>عرض محتويات الكورس</span></a>
+                            @else
+                     <span>يجب الاشتراك لعرض الكورس </span>
+
+                            @endif
                             <!-- end intro-rating -->
                         </div>
                     </div>
@@ -84,19 +92,11 @@
             <i class="fa fa-calendar"></i>
             من : 01 فبراير 2016 إلى : 27 ابريل 2016 (12 اسبوع)
         </h1>
-        <?php use App\Models\User; $orders= User::find(Auth::user()->id)->orders->where('course_id',$course->id); 
-        $completed= User::find(Auth::user()->id)->lessons->where('course_id',$course->id);
-        ?> 
+        
     
-  @if ( count($orders)>0)
-        @foreach ( $orders as $order)
-        @if ( $order->course_id == $course->id)
-            <a href="#" class="show-credit">
-                                    <i class="fa fa-paper-plane"></i>الغاء الاشتراك فى الدوره
-             </a>
-         @endif
-       @endforeach
- @else
+  @if (! count($orders)>0)
+    
+ 
         <a href="#" class="show-credit">
                                     <i class="fa fa-paper-plane"></i> إشترك في الدورة
                                 </a>
@@ -137,53 +137,32 @@
                         <!-- /.intro-instructor -->
                         <div class="intro-lec col-md-6 col-xs-12 text-right pull-right">
                             <div class="intro_lec-inner">
-                                <h1>        <a href="{{ route('course_page', $course->id) }}">
+                                <h1>      
                        {{$course->title}} 
-                         </a> ماذا يحتوي هذا الكورس</h1>
-                           <?php $ids[]=0;?>  
-                                <ol>
-                                           @foreach($completed as $lessoncom)
-                                @if (count($completed)>0)
+                          ماذا يحتوي هذا الكورس</h1>
+  
+                        <ol>
+                            
+  @if(count( $course->lessons)>0)
+         @foreach($course->lessons as $lesson)
+                                    
+                        
                                     <li>
-                                            <a href="{{ route('video', $lessoncom->id) }}" class="lesson-det"  style=" color: #2ecc71;">
-                                                <i class="fa fa-play-circle"  style=" color: #2ecc71;" ></i>
-                                                <span class="lesson-name"  style=" color: #2ecc71;">{{$lessoncom->title}}</span>
-                                            </a>     
-                                        </li>
-                                @endif
-                                  <?php $ids[]= $lessoncom->id;?>                    
-               @endforeach
-
-                              @if (count($course->lessons->whereNotIn('id', $ids)) > 0)
-                                 @foreach($course->lessons->whereNotIn('id', $ids) as $lesson)
-                                                    
-                                     
-                                                 <li>
-                                                <a href="{{ route('video', $lesson->id) }}" class="lesson-det">
-                                                    <i class="fa fa-play-circle"></i>
-                                                    <span class="lesson-name">{{$lesson->title}}</span>
-                                                </a>     
-                                            </li>
-                                        
-                                        
-                                     
-                                             
-                                 @endforeach
+                                    <i class="fa fa-play-circle"></i>
+                                    <span class="lesson-name">{{$lesson->title}}</span>
+                            </li>
+                        
+                        
+                        
+                                
+                    @endforeach
+     
+ 
+@else
+<li>  لايوجد دروس</li>
 
 
-                              @else
-                              <li>  لايوجد دروس الان</li>
-  @if (!count($course->lessons->whereNotIn('id', $ids)) > 0)
-
-       <div class="certf text-center animated bounceIn">
-                            <h1>تهانينا لقد  انتهيت من هذه الدورة بنجاح </h1>
-                           <a href="{{ route('test', $course->id) }}">
-                                <i class="fa fa-file-text-o"></i> ابدا الاختبار الان
-                            </a>
-                        </div>
-  @endif
-                                            
-                              @endif
+@endif
                             
                      
                             
@@ -279,12 +258,12 @@
             </h1>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-               <li role="presentation"  class="active">
+               <li role="presentation">
                     <a href="#paypal" aria-controls="paypal" role="tab" data-toggle="tab">
                         <i class="fa fa-paypal"></i> Paypal
                     </a>
                 </li>
-                <li role="presentation">
+                <li role="presentation"   class="active">
                     <a href="#credit-card" aria-controls="credit-card" role="tab" data-toggle="tab">
                         <i class="fa fa-credit-card"></i>Credit Card
                     </a>

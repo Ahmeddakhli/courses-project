@@ -1,7 +1,15 @@
 @extends('layouts.front')
 
 @section('content')
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
  <div class="up-box">
                         <div class="container">
                             <div class="up-form">
@@ -9,7 +17,10 @@
                                 <form  method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="up_form-item">
+                                        
                                         <span id="error-form">من فضلك ادخل البيانات الصحيحة</span>
+                                       <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                                         <input name="name" type="text" placeholder="الإسم بالكامل">
                                     </div>
                                     <!-- /.up_form-item -->

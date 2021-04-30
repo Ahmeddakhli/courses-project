@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\setting;
 use App\Models\Lecturer;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Order;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -26,11 +29,36 @@ class AdminController extends Controller
         
         return view('admin/lecturers',compact('data'));
     }
+    public function  orders()
+    {
+        $data=  Order::get();
+        
+        return view('admin/orders',compact('data'));
+    }
     public function course()
     {
         $data= Course::get();
         
         return view('admin/course',compact('data'));
+    }
+    
+    public function lecturershow($id)
+    {
+        $user= Lecturer::find($id);
+        
+        return view('admin/lecturer',['user'=>$user]);
+    }
+    public function courseshow($id)
+    {
+        $course= Course::find($id);
+        
+        return view('admin/showcourse',['course'=>$course]);
+    }
+    public function usershow($id)
+    {
+        $user= User::find($id);
+        
+        return view('admin/user',['user'=>$user]);
     } /**
      * Display a listing of the resource.
      *
@@ -49,11 +77,47 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function Financial()
     {
-        //
+        $course= Course::get();
+        
+        return view('admin/Financial',['data'=>$course]);
     }
+    public function tags()
+    {
+        $tags= Tag::get();
+        
+        return view('admin/tags',['tags'=>$tags]);
+    }
+    public function storetag(Request $request)
+    { 
+        $request->validate([
+            'title' => 'bail|required|unique:tags|max:255',
+           
+        ]);
+        
 
+          Tag::create([
+            'title' => $request->title,
+           
+        ]);
+
+        
+
+        return redirect(route('tags'));
+    
+    }
+ 
+    public function  aboutus()
+    {
+       /* if (App::isLocale('en')) {
+     
+        }*/
+        $settings= Setting::where('page',"services")->get();
+        $links= Setting::all()->where('page',"link");
+        
+        return view('about-us',compact('settings','links'));
+    }
     /**
      * Store a newly created resource in storage.
      *

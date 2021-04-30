@@ -1,9 +1,6 @@
-@extends('layouts.front')
+@extends('layouts.lecturer')
 
 @section('content')
-
-@endsection
-<x-guest-layout>
 
             <div class="header-nav">
                 <div class="container">
@@ -11,7 +8,7 @@
 
                         <div class="logo">
                             <a href="index.html" title="العلوم العصرية للتدريب">
-                                <img src="images/logo.png" alt="site-logo" width="110" height="70">
+                                <img src="{{asset('images/logo.png')}}" alt="site-logo" width="110" height="70">
                             </a>
                         </div>
                         <!-- /.logo -->
@@ -23,7 +20,7 @@
                                 <li>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="hvr-underline-reveal">
                                         <span class="cont-img">
-                                    <img src="images/comment-02.jpg" width="35" height="35" alt="User-Img">
+                                    <img src="{{asset('images/comment-02.jpg')}}" width="35" height="35" alt="User-Img">
                                 </span>
                                         <b>{{ auth()->guard('lecturer')->user()->name }}</b>
                                         <i class="fa fa-caret-down"></i>
@@ -32,11 +29,7 @@
                                         <div class="drop drop-links col-xs-12">
                                             <div class="drop-links">
                                                 <ul>
-                                                    <li>
-                                                        <a href="profile1.html">
-                                                            <i class="fa fa-user"></i>&nbsp; حسابي
-                                                        </a>
-                                                    </li>
+                                                 
                                                     <li>
                                                                       <a href="{{route('lecturerLogout') }}" >
                                                             <i class="fa fa-power-off"></i>&nbsp; خروج
@@ -448,7 +441,7 @@
 
                                                                 <div class="panel-pop modal" id="alert-all">
                                                                     <div class="lost-inner">
-                                                              <form method="POST" action="{{ route('mail',$course->id ) }}">
+                                                              <form method="get" action="{{ route('mail',$course->id ) }}">
                                                                  @csrf
                                                                         <h1>
                                                                             <i class="fa fa-envelope"></i>
@@ -628,7 +621,7 @@
                                 
                                                 $tags= App\Models\Tag::all();
                                             @endphp
-                                               <form method="POST" action="{{ route('addtag') }}">
+                                               <form method="get" action="{{ route('addtag') }}">
             @csrf
                                     @foreach ($tags as $tag )
                                         
@@ -727,7 +720,7 @@
                                                                         <!-- /.course_setting -->
                                                                         <div class="course_instructor-data">
                                                                             <span>
-                                                                                <img src="images/s.png" width="70" height="70" class="img-responsive">
+                                                                                <img src="{{asset('images/s.png')}}" width="70" height="70" class="img-responsive">
                                                                             </span>
                                                                             <a href="#">
                                                                                 <i class="fa fa-user"></i> أمير ناجح الدسوقي
@@ -772,7 +765,7 @@
                                                                         <!-- /.course_setting -->
                                                                         <div class="course_instructor-data">
                                                                             <span>
-                                                                                <img src="images/s.png" width="70" height="70" class="img-responsive">
+                                                                                <img src="{{asset('images/s.png" width="70')}}" height="70" class="img-responsive">
                                                                             </span>
                                                                             <a href="#">
                                                                                 <i class="fa fa-user"></i> أمير ناجح الدسوقي
@@ -818,95 +811,9 @@
                                                 </ul>
 
                                                 <!-- Tab panes -->
-                                                <div class="tab-content">
-           @php
-  
-        $todayDate = now()->format('Y-m-d');
-     $course_at=$lecturer->courses->first()->start_at;
-     
-           @endphp
-           @if($course_at<= $todayDate)
-                    <div role="tabpanel" class="tab-pane fade in active" id="currentmy">
-                                                        <div class="type col-xs-12">
-                                                            <div class="filtered-head text-right">
-                                                                <h1>
-                                                                <i class="fa fa-tags"></i>
-                                                                تنمية بشرية
-                                                            </h1>
-                                                            </div>
-                                                            <!-- /.filtered-head -->
-                                                            <div class="card col-md-6 col-xs-12 pull-right">
-                                                                <div class="card-inner">
-                                                                    <span class="corse-type">الالهام</span>
-                                                                    <div class="card-img">
+                                       <div class="tab-content">
 
-                                                                        <img src="images/bg-4.jpg" alt="" class="img-responsive">
-                                                                        <div class="lessons-number text-center">
-                                                                            <h1>
-                                                                            <i class="fa fa-play-circle"></i>
-                                                                            100
-                                                                        </h1>
-                                                                        </div>
-                                                                        <!-- /.lessons-number -->
-                                                                    </div>
-                                                                    <!-- /.card-img -->
-                                                                    <div class="card-data">
-                                                                        <div class="course_name text-right">
-                                                                            <h1>
-                                                                                <a href="#">البرمجة بدون كود </a>
-                                                                            </h1>
-                                                                        </div>
-                                                                        <!-- /.course-name -->
-                                                                        <div class="course_setting text-right">
-                                                                            <span class="course_date">
-                                                                                <i class="fa fa-calendar"></i>
-                                                                                من 01 فبراير 2016 إلى 30 مايو 2016
-                                                                            </span>
-                                                                        </div>
-                                                                        <!-- /.course_setting -->
-                                                                        <div class="course_instructor-data">
-                                                                            <span>
-                                                                                <img src="images/s.png" width="70" height="70" class="img-responsive">
-                                                                            </span>
-                                                                            <a href="#">
-                                                                                <i class="fa fa-user"></i> أمير ناجح الدسوقي
-                                                                            </a>
-                                                                        </div>
-                                                                        <!-- /.course_instructor-data -->
-                                                                        <div class="corse-action">
-                                                                            <a href="#" class="gonna-corse">
-                                                                                <i class="fa fa-paper-plane"></i> إذهب الي الدورة
-                                                                            </a>
-                                                                            <a href="#" class="out-corse">
-                                                                                <i class="fa fa-sign-out"></i> إنسحاب من الدورة
-                                                                            </a>
-                                                                        </div>
-                                                                        <!-- /.corse-action -->
-                                                                    </div>
-                                                                    <!-- /.card-data -->
-
-                                                                </div>
-                                                                <!-- /.card-inner -->
-                                                            </div>
-                                                            <!-- /.card -->
-
-                                                                              <!-- /.card -->
-                                                        </div>
-                                                        <!-- /.type -->
-                                                    </div>
-          @else
-    
-               
-               
-                                                        <div class="flash_empty text-center">
-                                                            <h1 class="animated shake">
-                                                                <i class="fa fa-frown-o"></i>
-                                                                عفواً لا يوجد لديك دورات في هذا القسم
-                                                            </h1>
-                                                        </div>
-           
-           @endif
-                                            
+                                    
                                                     <!-- ///////////////#currentmy -->
                                                     <div role="tabpanel" class="tab-pane fade" id="commingmy">
                                                         <div class="flash_empty text-center">
@@ -952,41 +859,10 @@
 
      
 
-        <footer>
-            <div class="container">
-                <div class="copyrights col-md-10 col-xs-12 text-center pull-right">
-                    <p>حميع الحقوق محفوظة لدي العلوم العصرية للتدريب</p>
-                </div>
-                <!-- /.copyrights -->
-                <div class="footer-links col-md-2 col-xs-12 pull-left">
-                    <ul>
-                        <li>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="facebook">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="twitter">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="linkedin">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.footer-links -->
-            </div>
-            <!-- /.container -->
-        </footer>
     </div>
     <!-- /.wrapper -->
 
     <div class="toTop col-xs-12 text-center">
         <i class="fa fa-angle-up"></i>
     </div>
-</x-guest-layout>
+@endsection

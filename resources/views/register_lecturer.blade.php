@@ -7,6 +7,8 @@
                         </div>
                         <!-- /.container -->
                     </div>
+   
+
  <div class="up-box">
                         <div class="container">
                             <div class="up-form">

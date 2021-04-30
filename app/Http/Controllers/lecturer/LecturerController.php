@@ -26,7 +26,7 @@ class LecturerController extends Controller
     {
         //
     }
-    public function login()
+    public function leclogin()
     {
         return view('auth.leclogin');
     }
@@ -89,7 +89,8 @@ class LecturerController extends Controller
 
         
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('lecturer.login'));
+    
     }
 
 

@@ -13,15 +13,34 @@
                     <div class="up-box about-box">
                         <div class="container">
                             <div class="about-img col-md-4 col-xs-12 pull-left">
-                                <img src="images/3lom.jpg" class="img-responsive" alt="">
+                                <img src="{{asset('images/3lom.jpg')}}" class="img-responsive" alt="">
                             </div>
                             <!-- end about-img -->
                             <div class="about-data col-md-8 col-xs-12 pull-right text-right">
-                                <p>
+                             <br>
+                                <h1>الموقع  </h1>
+                                 <p>
                                     هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر أو الكلمات العشوائية إلى النص. إن كنت تريد أن تستخدم نص لوريم إيبسوم ما، عليك أن تتحقق أولاً أن ليس هناك أي كلمات أو عبارات محرجة أو غير لائقة مخبأة في هذا النص. بينما تعمل جميع مولّدات نصوص لوريم إيبسوم على الإنترنت على إعادة تكرار مقاطع من نص لوريم إيبسوم نفسه عدة مرات بما تتطلبه الحاجة، يقوم مولّدنا هذا باستخدام كلمات من قاموس يحوي على أكثر من 200 كلمة لا تينية، مضاف إليها مجموعة من الجمل النموذجية، لتكوين نص لوريم إيبسوم ذو شكل منطقي قريب إلى النص الحقيقي. وبالتالي يكون النص الناتح خالي من التكرار، أو أي كلمات أو عبارات غير لائقة أو ما شابه. وهذا ما يجعله أول مولّد نص لوريم إيبسوم حقيقي على الإنترنت.
 
 
                                 </p>
+                                @foreach ($settings as $data)
+<div class="border-bottom">
+            <h1><strong> {{$data->name}}</strong></h1>
+            <p>{{$data->sub}}</p>
+            
+            @if (App::isLocale('en')) 
+
+               {!! $data->value_en !!}
+            @else
+              {!! $data->value_ar !!}
+             @endif
+        </div>
+
+        
+    
+@endforeach
+                               
                             </div>
                             <!-- end about-data -->
                         </div>

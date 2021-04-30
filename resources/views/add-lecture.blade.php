@@ -10,6 +10,14 @@
                 </div>
                 <!-- /.container -->
             </div>
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        </ul>
+    </div>
+@endif
             <!-- /.up-header -->
             <div class="up-box">
                 <div class="container">

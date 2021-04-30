@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.lecturer')
 
 @section('content')
 
@@ -9,12 +9,20 @@
                 </div>
                 <!-- /.container -->
             </div>
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+      <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        </ul>
+    </div>
+@endif
             <!-- /.up-header -->
             <div class="up-box">
                 <div class="container">
                     <div class="up-form">
 
-                        <form method="POST" action="{{ route('storecourse') }}" class="add-form">
+                        <form method="get" action="{{ route('storecourse') }}" class="add-form">
                         @csrf
                             <div class="up_form-item">
                                 <h1>عنوان الدورة</h1>
@@ -50,15 +58,7 @@
                                 <div class="add_cont text-right">
                                     <div class="lecture-item">
                                         <div class="add_cont text-right">
-                                            <label class="text-right">
-                                                <input  type="checkbox" id="up-video">
-                                                <span>اذا أردت رفع فيديو من جهازك الشخصي</span>
-                                            </label>
-
-                                            <div class="videoUploaded col-xs-12 text-right">
-                                                <span><i class="fa fa-video-camera"></i> ارفع فيديو من جهازك</span>
-                                                <input  name="vedio_link" type="file" class="uploaded">
-                                            </div>
+          
                                             <!--
                                                                                 <label class="text-right">
                                                                                     <input type="radio" id="add-link">
@@ -104,14 +104,14 @@
                                     <div class="lecture-item">
                                         <div class="add_cont text-right">
                                             <label class="text-right">
-                                                <input name="course_mony" type="checkbox" value="payed" id="up-video2">
+                                                <input name="course_payment" type="checkbox" value="payed" id="up-video2">
                                                 <span>مدفوعه</span>
                                                  <input name="course_mony" type="checkbox"  value="nonpayed"id="up-video">
                                                 <span>مجانى</span>
                                             </label>
 
                                             <div class="videoUploaded2 col-xs-12 text-right">
-                                              <input  name="course_payment" class="linked" type="number" data-toggle="tooltip" data-placement="top" placeholder="اضف سعر الدورة" title="اضف سعر الدورة">
+                                              <input  name="course_mony" class="linked" type="number" data-toggle="tooltip" data-placement="top" placeholder="اضف سعر الدورة" title="اضف سعر الدورة">
                                               <input  name="lecturer_id"  type="hidden"   value="{{auth()->guard('lecturer')->user()->id}}">
 
                                             </div>

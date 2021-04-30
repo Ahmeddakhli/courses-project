@@ -26,8 +26,7 @@ class MassageRequest extends FormRequest
         return [
             'title' =>'required|string|max:255',
             'body' => 'required|string|max:255',
-            'lecturer_id' => 'required',
-            'course_id' =>'required' ,
+       
         ];
     }
 }

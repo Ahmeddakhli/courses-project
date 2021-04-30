@@ -11,6 +11,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.2",
         "mcamara/laravel-localization": "^1.6",
         "nexmo/client": "^2.4",
         "paypal/rest-api-sdk-php": "*",

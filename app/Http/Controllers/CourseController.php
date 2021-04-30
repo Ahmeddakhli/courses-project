@@ -36,6 +36,17 @@ class CourseController extends Controller
         ]);
 
     }
+    public function mycourses()
+    {
+        $allcourses = Order::where('user_id','=',Auth::user()->id)->get();
+ 
+      //  $alltag = Tag::whereHas('courses')->get();
+          return view('mycourses', [
+            'allorders' =>  $allcourses,
+          
+        ]);
+
+    }
     public function search(Request $request){
         // Get the search value from the request
         $search = $request->input('search');

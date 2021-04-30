@@ -16,20 +16,20 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->string('vedio_link');
             $table->text('description');
             $table->string('sex');
             $table->date('start_at');
-            $table->boolean('course_payment');
+            $table->string('course_payment');
             $table->string('course_mony');
-            $table->string('certificate_title');
-            $table->string('certificate_from');
-            $table->boolean('certificate_payment');
-            $table->string('certificate_mony');
+            $table->string('certificate_title')->nullable();
+            $table->string('certificate_from')->nullable();
+            $table->boolean('certificate_payment')->nullable();
+            $table->string('certificate_mony')->nullable();
             $table->text('wellcome_massage');
-            $table->boolean('approve');
-            $table->text('approve_massage');
+            $table->boolean('approve')->nullable();
+            $table->text('approve_massage')->nullable();
             $table->foreignId('lecturer_id')->constrained('lecturers')->onDelete('cascade');
 
             $table->timestamps();

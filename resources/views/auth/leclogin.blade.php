@@ -3,7 +3,14 @@
         <x-slot name="logo">
          
         </x-slot>
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        </ul>
+    </div>
+@endif
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 

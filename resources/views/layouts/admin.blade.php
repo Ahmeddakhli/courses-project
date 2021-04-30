@@ -84,7 +84,7 @@ div.dataTables_wrapper {
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>photo</b>maker</span>
+          <span class="logo-lg"><b>courses</b>project</span>
         </a>
 
         <!-- Header Navbar -->
@@ -116,10 +116,17 @@ div.dataTables_wrapper {
           <ul class="sidebar-menu">
            
             <!-- Optionally, you can add icons to the links -->
+            
+           
             <li class="active"><a href="{{ url('/admin') }}"><i class="fa fa-link"></i> <span>home</span></a></li>
+            <li><a href="{{ route('tags') }}"><i class="fa fa-link"></i> <span>All tags</span></a></li>
+
             <li><a href="{{ route('client') }}"><i class="fa fa-link"></i> <span>All users</span></a></li>
          <li><a href="{{ route('course') }}"><i class="fa fa-link"></i> <span>All courses</span></a></li>
                   <li><a href="{{ route('lecturers') }}"><i class="fa fa-link"></i> <span>All lecturers</span></a></li>
+                  <li><a href="{{ route('Financial') }}"><i class="fa fa-link"></i> <span>All Financial</span></a></li>
+                  <li><a href="{{ route('settings') }}"><i class="fa fa-link"></i> <span>All settings</span></a></li>
+                  <li><a href="{{ route('orders') }}"><i class="fa fa-link"></i> <span>All orders</span></a></li>
 
              <li><a href="{{ route('courses') }}"><i class="fa fa-link"></i> <span>go to website</span></a></li>
         
@@ -129,13 +136,13 @@ div.dataTables_wrapper {
                 
 
                 <div class="ml-3">
-                    <div style="color:blue" class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div style="color:blue" class="font-medium text-base text-gray-800">{{ auth()->guard('admin')->user()->name }}</div>
                 </div>
             </div>
 
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="get" action="{{ route('adminLogout') }}">
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"

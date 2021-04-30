@@ -59,28 +59,9 @@
                     <div class="search-categories text-center">
                         <div class="container">
                             <div class="cat-item">
-                                <div class="cat-inner col-md-6 col-sm-6 col-xs-6 pull-right">
-                                    <a href="#" class="show-cat">علوم الحاسب<i class="fa fa-caret-down"></i></a>
-                                    <div class="hidden-cat">
-                                        <ul>
-                                            <li>
-                                                <a href="#">برمجة ويب</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">برمجة ويب</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">برمجة ويب</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">برمجة ويب</a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
+                             
                                 <!-- /. cat-inner -->
-                                <div class="cat-inner col-md-6 col-sm-6 col-xs-6 pull-left">
+                                <div class="cat-inner col-md-6 col-sm-6 col-xs-6 pull-right">
                                   
                                     <form action="{{ route('search') }}" method="GET">
                                     @csrf
@@ -106,7 +87,7 @@
                                     <figcaption class="text-right">
                                         <h1> :اسم الكورس<span>  {{$course->title}}  </span></h1>
                                         <h1> :اسم المدرس<span>  {{$course->lecturer->name}}  </span></h1>
-                                        <h1> :عدد الطلبة المشتركة<span>  {{count($course->users)}}  </span> </h1>
+                                        <h1> :عدد الطلبة المشتركة<span>  {{count($course->orders)}}  </span> </h1>
                                         <h1> :تاريخ بداية الكورس<span>  {{$course->start_at}}  </span></h1>
                                         <h1> :تقييم الكورس <span>30%</span></h1>
                                         <a href="{{ route('course_intro', $course->id) }}">

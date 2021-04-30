@@ -32,7 +32,7 @@ class CourseRequest extends FormRequest
             'course_mony'=>'required|integer',
             'wellcome_massage'=>'required|string|max:255',
             'start_at'=>'required|date',
-            'tags'=>'required'
+          
         ];
     }
 }

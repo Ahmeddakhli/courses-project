@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'title',
+    ];
     public function users()
     {
         return $this->morphToMany(User::class, 'userable');

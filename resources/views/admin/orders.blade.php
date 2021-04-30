@@ -19,47 +19,29 @@
         <thead>
               <tr>
                       <th >#</th>
-                      <th>name</th>
-                      <th> description</th>
-                       <th> start at</th>
-                        <th>  lecturer name </th>
+                      <th>user name</th>
+                      <th> course name</th>
+                       <th> chekout_id</th>
+                        <th>  mony </th>
                       
-                        <th width="50">sex</th>
-                        <th >tags </th>
-                      <th >actions </th>
+                        <th >status </th>
+                    
                     
                     </tr>
         </thead>
         <tbody>
-               @foreach ($data as $key => $client)
+               @foreach ($data as $key => $order)
                     <tr>
                     
-                    <td colspan="">{{ $client->id}}</td>
-                    <td colspan="">{{ $client->title}}</td>
-                    <td colspan="">{{ $client->description}}</td>
-                    <td>{{$client->start_at}}</td>
-                    <td>{{$client->lecturer->name}}</td>
-                       <td>{{$client->sex}}</td> 
-                        <td>
-                   @foreach ($client->tags as $key => $service) 
-                   <li>
-                      ({{ $service->title}})
-                    </li>
-                   @endforeach
-                  </ul> </td>
-                           
-              <td> 
-                    <form action="" method="post">
-                    @csrf
-                    {{method_field('delete')}}
-                    <button class='btn btn-danger' onclick="return confirm('Are you sure?you want to delete this فكر تانى ')"> <i class="fa fa-trash"></i></button>
-                                
-                    <a class="btn btn-success"  href=""><i class="fa fa-edit"></i></a>
-                  
-                  <a class="btn btn-info"  href="{{ route('courseshow', $client->id) }}">  <i class="fa fa-eye"></i></a>
+                    <td colspan="">{{ $order->id}}</td>
+                    <td colspan="">{{ $order->user->name}}</td>
+                    <td colspan="">{{ $order->course->title}}</td>
+                    <td>{{$order->order_num}}</td>
+                    <td>{{$order->course->course_mony}}</td>
+                   <td>success</td>
 
-                    </form>
-                          </td> 
+                           
+            
 
                 
                             

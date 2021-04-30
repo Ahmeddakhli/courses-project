@@ -19,54 +19,40 @@
         <thead>
               <tr>
                       <th >#</th>
-                      <th>name</th>
-                      <th> description</th>
-                       <th> start at</th>
-                        <th>  lecturer name </th>
+                      <th> course name</th>
+                      <th> lecturer name </th>
+                       <th>students num </th>
+                        <th>  Financial </th>
+                       <th>  total Financial </th>
                       
-                        <th width="50">sex</th>
-                        <th >tags </th>
-                      <th >actions </th>
+                     
                     
                     </tr>
         </thead>
         <tbody>
+         @php
+                    $all=0;
+                  @endphp
                @foreach ($data as $key => $client)
                     <tr>
                     
                     <td colspan="">{{ $client->id}}</td>
                     <td colspan="">{{ $client->title}}</td>
-                    <td colspan="">{{ $client->description}}</td>
-                    <td>{{$client->start_at}}</td>
-                    <td>{{$client->lecturer->name}}</td>
-                       <td>{{$client->sex}}</td> 
-                        <td>
-                   @foreach ($client->tags as $key => $service) 
-                   <li>
-                      ({{ $service->title}})
-                    </li>
-                   @endforeach
-                  </ul> </td>
-                           
-              <td> 
-                    <form action="" method="post">
-                    @csrf
-                    {{method_field('delete')}}
-                    <button class='btn btn-danger' onclick="return confirm('Are you sure?you want to delete this فكر تانى ')"> <i class="fa fa-trash"></i></button>
-                                
-                    <a class="btn btn-success"  href=""><i class="fa fa-edit"></i></a>
-                  
-                  <a class="btn btn-info"  href="{{ route('courseshow', $client->id) }}">  <i class="fa fa-eye"></i></a>
-
-                    </form>
-                          </td> 
-
-                
+                    <td colspan="">{{ $client->lecturer->name}}</td>
+                    <td>{{count($client->orders)}}</td>
+                    <td>{{$client->course_mony}}</td>
+                   <td>{{$client->course_mony*count($client->orders)}}</td>
                             
                     </tr>
+                    @php
+                      
+                       $all = $all+($client->course_mony*count($client->orders));
+                     
+                    @endphp
                    @endforeach 
           
         </tbody>
+        <h1 >${{ $all}} total Financial </h1>
     </table>
   
 

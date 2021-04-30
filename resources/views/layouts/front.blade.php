@@ -53,9 +53,7 @@
                     <li><a id="sd" class="icon icon-location" href="{{ route('about-us') }}"><i class="fa fa-group"></i>من نحن</a></li>
                     <li><a class="icon icon-photo" href="{{ route('contact-us') }}"><i class="fa fa-phone"></i>اتصل بنا</a></li>
 
-                    <li><a class="icon icon-study" href="certif.html"><i class="fa fa-file"></i>شهادة التقدير</a></li>
-                    <li><a class="icon icon-wallet" href="profile1.html"><i class="fa fa-user"></i>الحساب الشخصي</a></li>
-                    <li><a class="icon icon-data" href="reset-passowrd.html">تغير كلمة المرور</a></li>
+                    <li><a class="icon icon-study" href=""><i class="fa fa-file"></i>شهادة التقدير</a></li>
                 </ul>
             </nav>
             <div class="st-content">
@@ -239,8 +237,13 @@
                                                     <div class="drop-links">
                                                         <ul>
                                                             <li>
-                                                                <a href="profile1.html">
-                                                                    <i class="fa fa-user"></i>&nbsp; حسابي
+                                                                <a href="{{ route('mycourses') }}">
+                                                                    <i class="fa fa-user"></i>&nbsp; كورساتى
+                                                                </a>
+                                                            </li>
+                                                             <li>
+                                                                <a href="{{ route('mytags') }}">
+                                                                    <i class="fa fa-user"></i>&nbsp; مجالاتى
                                                                 </a>
                                                             </li>
                                                     <li>

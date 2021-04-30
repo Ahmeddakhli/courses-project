@@ -56,7 +56,7 @@
                                 
                     <a class="btn btn-success"  href=""><i class="fa fa-edit"></i></a>
                   
-                  <a class="btn btn-info"  href="">  <i class="fa fa-eye"></i></a>
+                  <a class="btn btn-info"  href="{{ route('lecturershow', $client->id) }}">  <i class="fa fa-eye"></i></a>
 
                     </form>
                           </td> 

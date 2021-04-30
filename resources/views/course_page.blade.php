@@ -76,18 +76,18 @@
 
                                 ?> 
                         <ul>
-                           
-                        @foreach($completed as $lessoncom)
-                                @if (count($completed)>0)
-                                    <li>
-                                            <a href="{{ route('video', $lessoncom->id) }}" class="lesson-det">
-                                                <i class="fa fa-play-circle"  style=" color: #2ecc71;"></i>
-                                                <span class="lesson-name"  style=" color: #2ecc71;">{{$lessoncom->title}}</span>
-                                            </a>     
-                                        </li>
-                                @endif
-                                  <?php $ids[]= $lessoncom->id;?>                    
-               @endforeach
+ @if(count( $course->lessons)>0)   
+     @if(count( $completed)>0)
+           @foreach($completed as $lessoncom)
+    
+            <li>
+                    <a href="{{ route('video', $lessoncom->id) }}" class="lesson-det">
+                        <i class="fa fa-play-circle"  style=" color: #2ecc71;"></i>
+                        <span class="lesson-name"  style=" color: #2ecc71;">{{$lessoncom->title}}</span>
+                    </a>     
+                </li>
+            <?php $ids[]= $lessoncom->id;?>                    
+          @endforeach
                               @if (count($course->lessons->whereNotIn('id', $ids)) > 0)
                                  @foreach($course->lessons->whereNotIn('id', $ids) as $lesson)
                                                     
@@ -106,18 +106,47 @@
 
 
                               @else
-                              <li>  لايوجد دروس</li>
+                                @php $scorse=  Auth::user()->scores->where('course_id' ,$course->id); @endphp
+                             
 
-                                          
-                                <div class="take-exam col-xs-12 text-center">
-                                    <a href="{{ route('test', $course->id) }}">
-                                        <i class="fa fa-file-text-o"></i> ابدا الاختبار الان
-                                    </a>
-                                        
-                                </div>  
+                                  @if (count( $scorse))
+                                                    <div class="certf text-center animated bounceIn">
+                                    
+                                                        <h1>تهانينا لقد  انتهيت من هذه الدورة بنجاح </h1>
+                                                    <a href="{{ route('cert',['course_id'=>$course->id,'score'=> $scorse->first()->score]) }}">
+                                                            <i class="fa fa-file-text-o" ></i>  عرض الشهاده 
+                                                        </a>
+                                                    </div>
+                                    @else
+                                    <div class="certf text-center animated bounceIn">
+                                                            <h1>تهانينا لقد  انتهيت من هذه الدورة بنجاح </h1>
+                                                        <a href="{{ route('test', $course->id) }}">
+                                                                <i class="fa fa-file-text-o"></i> ابدا الاختبار الان
+                                                            </a>
+                                                        </div>
+                                    @endif  
                               @endif
-                            
-                     
+        @else
+        @foreach($course->lessons as $lesson)
+                                    
+                        
+                                    <li>
+                                <a href="{{ route('video', $lesson->id) }}" class="lesson-det">
+                                    <i class="fa fa-play-circle"></i>
+                                    <span class="lesson-name">{{$lesson->title}}</span>
+                                </a>     
+                            </li>
+                        
+                        
+                        
+                                
+                    @endforeach
+    @endif
+@else
+<li>  لايوجد دروس</li>
+
+
+@endif
                             
                             
 
